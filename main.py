@@ -34,11 +34,26 @@ def main(page: ft.Page):
         if correo.value == usuario_valido and contraseña.value == password_valido:
             mensaje.value = "Inicio de sesión exitoso"
             mensaje.color = "green"
+            pantalla_principal()
         else:
             mensaje.value = "Correo o contraseña incorrectos"
             mensaje.color = "red"
 
         page.update()
+        
+    def pantalla_principal():
+        
+        page.clean()
+        
+        page.navigation_bar = ft.NavigationBar(
+        destinations=[
+            ft.NavigationBarDestination(icon=ft.Icons.HOME, label="Inicio"),
+            ft.NavigationBarDestination(icon=ft.Icons.EXPLORE, label="Explorar"),
+            ft.NavigationBarDestination(icon=ft.Icons.PERSON,label="Perfil",
+            ),
+        ]
+    )
+    page.update()
 
     iniciar_sesion = ft.ElevatedButton(
         "Iniciar sesión",
